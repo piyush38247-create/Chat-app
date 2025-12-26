@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Join Interview</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      width: 400px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+    .success {
+      color: green;
+      font-weight: bold;
+    }
+    button {
+      padding: 10px 20px;
+      background: #007bff;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+
+    <% if (error) { %>
+      <p class="error"><%= error %></p>
+    <% } else { %>
+      <h2>Interview Meeting</h2>
+
+      <p><strong>Title:</strong> <%= meeting.title %></p>
+      <p><strong>Host:</strong> <%= meeting.host?.name || "N/A" %></p>
+      <p><strong>Scheduled At:</strong>
+        <%= new Date(meeting.scheduledAt).toLocaleString() %>
+      </p>
+
+      <p class="success">✅ You have successfully joined the meeting</p>
+
+      <% if (meeting.meetingLink) { %>
+        <a href="<%= meeting.meetingLink %>">
+          <button>Join Call</button>
+        </a>
+      <% } %>
+    <% } %>
+
+  </div>
+</body>
+</html>
